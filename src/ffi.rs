@@ -21,12 +21,14 @@ pub enum Ipc {
   STAT   = 0o0000002,
   INFO   = 0o0000003,
 }
-
 /// The `TOK_*` const are default values
 /// for macros.
 
 pub const TOK_PATHNAME: &'static [u8; 4] = b"/tmp";
 pub const TOK_PROJ_ID: u32 = 0;
+pub const SEM_NUM: i32 = 0;
+pub const NSEMS: i32 = 1;
+pub const NSOPS: u64 = 1;
 
 /// The `C` extern is list of libc functions required
 /// by the project.
@@ -41,9 +43,9 @@ extern "C" {
 
 #[repr(C)]
 pub struct SemBuf {
-    pub semNum: u16, /* semaphore. # */
-    pub semOp: i16, /* semaphore operation. */
-    pub semFlg: i16, /* operation flags. */
+    pub sem_num: u16, /* semaphore. # */
+    pub sem_op: i16, /* semaphore operation. */
+    pub sem_flg: i16, /* operation flags. */
 }
 
 #[repr(C)]
@@ -55,10 +57,10 @@ pub struct SemUn {
 
 #[repr(C)]
 pub struct SemIdDs {
-    pub semPerm: IpcPerm, /* Ownership and permissions. */
-    pub semOtime: i64, /* Last semop time. */
-    pub semCtime: i64, /* Last change time. */
-    pub semNsems: u16, /* No. of semaphores in set. */
+    pub sem_perm: IpcPerm, /* Ownership and permissions. */
+    pub sem_otime: i64, /* Last semop time. */
+    pub sem_ctime: i64, /* Last change time. */
+    pub sem_nsems: u16, /* No. of semaphores in set. */
 }
 
 #[repr(C)]

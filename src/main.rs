@@ -7,11 +7,14 @@
 
 #[macro_use] extern crate sem;
 
-#[allow(unused_assignments)]
+#[allow(unused_unsafe)]
 fn main () {
-    if let Some(key) = ftok!() {
-        if let Some(id) = semget_id!(key, 1) {
-            println!("work: {}", semctl!(id, sem::ffi::Ipc::SET));
-        }
-    }
+    let id: i32 = semget_id! (
+        ftok!().expect("ftok! fail")
+    ).expect("semget! fail");
+
+    //semctl!(id, sem::ffi::SEM_NUM, sem::ffi::Ipc::SET);
+    //semop_lock!(id);
+    semop_unlock!(id);
+    println!("work: {}", semctl_clear!(id));
 }
