@@ -145,7 +145,7 @@ macro_rules! semop_unlock {
     });
 }
 
-/// The `semctl` macro...
+/// The `semctl` macro configures the semaphore index.
 
 #[macro_export]
 macro_rules! semctl {
@@ -153,15 +153,6 @@ macro_rules! semctl {
         semctl!($id, sem::ffi::SEM_NUM, $cmd)
     });
     ($id: expr, $semnum: expr, $cmd: expr) => ({
-        /*let mut op = sem::ffi::SemUn {
-            sem_num: $index as u16,
-            sem_op: if $lock {
-                -1
-            } else {
-                1
-            },
-            sem_flg: $flag,
-        };*/
         extern crate std;
         semctl!($id, $semnum, $cmd, std::ptr::null_mut())
     });
