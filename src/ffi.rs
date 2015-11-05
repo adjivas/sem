@@ -41,9 +41,9 @@ extern "C" {
 
 #[repr(C)]
 pub struct SemBuf {
-    pub sem_num: u16, /* semaphore. # */
-    pub sem_op: i16, /* semaphore operation. */
-    pub sem_flg: i16, /* operation flags. */
+    pub semNum: u16, /* semaphore. # */
+    pub semOp: i16, /* semaphore operation. */
+    pub semFlg: i16, /* operation flags. */
 }
 
 #[repr(C)]
@@ -55,10 +55,10 @@ pub struct SemUn {
 
 #[repr(C)]
 pub struct SemIdDs {
-    pub sem_perm: IpcPerm, /* Ownership and permissions. */
-    pub sem_otime: i64, /* Last semop time. */
-    pub sem_ctime: i64, /* Last change time. */
-    pub sem_nsems: u16, /* No. of semaphores in set. */
+    pub semPerm: IpcPerm, /* Ownership and permissions. */
+    pub semOtime: i64, /* Last semop time. */
+    pub semCtime: i64, /* Last change time. */
+    pub semNsems: u16, /* No. of semaphores in set. */
 }
 
 #[repr(C)]

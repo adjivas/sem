@@ -40,12 +40,6 @@ macro_rules! ftok {
 
 #[macro_export]
 macro_rules! semget {
-    ($key: expr) => ({
-        semget! (
-            $key,
-            1
-        )
-    });
     ($key: expr, $nsems: expr, $semflg: expr) => ({
         extern crate sem;
         match unsafe {
@@ -69,15 +63,15 @@ macro_rules! semget_id {
     ($key: expr, $nsems: expr) => ({
         match semget! (
             $key,
-            $nsems,
-            0o0666 | sem::ffi::Ipc::CREAT as i32
-                   | sem::ffi::Ipc::EXCL as i32
+            0,
+            0
         ) {
             Some(id) => Some(id),
             None => semget! (
                 $key,
                 $nsems,
-                0o0666
+                0o0666 | sem::ffi::Ipc::CREAT as i32
+                       | sem::ffi::Ipc::EXCL as i32
             ),
         }
     });
