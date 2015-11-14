@@ -13,7 +13,8 @@ fn main () {
         ftok!().expect("ftok! fail")
     ).expect("semget! fail");
 
+    semctl_init!(id);
     semop_lock!(id);
     semop_unlock!(id);
-    println!("work: {}", semctl_clear!(id));
+    semctl_clear!(id);
 }

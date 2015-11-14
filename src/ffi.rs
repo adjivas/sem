@@ -13,14 +13,26 @@
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub enum Ipc {
-  CREAT  = 0o0001000,
-  NOWAIT = 2048,
-  EXCL   = 0o0002000,
-  RMID   = 0o0000000,
-  SET    = 0o0000001,
-  STAT   = 0o0000002,
-  INFO   = 0o0000003,
+    CREAT  = 0o0001000,
+    NOWAIT = 2048,
+    EXCL   = 0o0002000,
+    RMID   = 0o0000000,
+    SET    = 0o0000001,
+    STAT   = 0o0000002,
+    INFO   = 0o0000003,
 }
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub enum Sem {
+  GETPID  = 11,
+  GETVAL  = 12,
+  GETALL  = 13,
+  GETZCNT = 15,
+  SETVAL  = 16,
+  SETALL  = 17,
+}
+
 /// The `TOK_*` const are default values
 /// for macros.
 
@@ -38,7 +50,7 @@ extern "C" {
     pub fn ftok(path: *mut i8, id: i32) -> i64;
     pub fn semget(key: u32, nsems: i32, semflg: i32) -> i32;
     pub fn semop(semid: i32, sops: *mut SemBuf, nsops: u64) -> i32;
-    pub fn semctl(semid: i32, semnum: i32, cmd: i32, arg: *mut SemUn) -> i32;
+    pub fn semctl(semid: i32, semnum: i32, cmd: i32, arg: i32) -> i32;
 }
 
 #[repr(C)]

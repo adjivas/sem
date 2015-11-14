@@ -50,10 +50,7 @@ macro_rules! semget {
           )
         } {
             -1 => None,
-            id => /*match semctl_init!(id, $nsems) {
-                false => None,
-                true =>*/ Some(id)/*,
-            }*/,
+            id => Some(id),
         }
     });
 }
@@ -71,7 +68,6 @@ macro_rules! semget_id {
             $key,
             $nsems,
             0o0666 | sem::ffi::Ipc::CREAT as i32
-                   | sem::ffi::Ipc::EXCL as i32
         )
     });
 }
@@ -153,8 +149,7 @@ macro_rules! semctl {
         semctl!($id, sem::ffi::SEM_NUM, $cmd)
     });
     ($id: expr, $semnum: expr, $cmd: expr) => ({
-        extern crate std;
-        semctl!($id, $semnum, $cmd, std::ptr::null_mut())
+        semctl!($id, $semnum, $cmd, 1)
     });
     ($id: expr, $semnum: expr, $cmd: expr, $arg: expr) => ({
         extern crate sem;
@@ -177,10 +172,10 @@ macro_rules! semctl {
 #[macro_export]
 macro_rules! semctl_init {
     ($id: expr) => ({
-        semctl!($id, 0, sem::ffi::Ipc::SET)
+        semctl_init!($id, 0)
     });
     ($id: expr, $semnum: expr) => ({
-        semctl!($id, $semnum, sem::ffi::Ipc::SET)
+        semctl!($id, $semnum, sem::ffi::Sem::SETVAL)
     });
 }
 
@@ -189,6 +184,6 @@ macro_rules! semctl_init {
 #[macro_export]
 macro_rules! semctl_clear {
     ($id: expr) => ({
-        semctl!($id, sem::ffi::Ipc::RMID, 0)
+        semctl!($id, 0, sem::ffi::Ipc::RMID)
     });
 }
