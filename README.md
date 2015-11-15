@@ -10,17 +10,25 @@ git clone https://github.com/adjivas/sem.git sem && cd sem
 cargo build
 ```
 
+#### How to use:
+```shell
+cargo run --example lock_and_unlock
+```
+
 #### Directory-Tree:
 ```shell
 .
 |__ Cargo.toml
 |__ LICENSE
 |__ README.md
+|__ examples
+|   \__ lock_and_unlock.rs
+|__ tests
+|   \__ lib.rs
 \__ src
     |__ ffi.rs
     |__ lib.rs
-    |__ macros.rs
-    \__ main.rs
+    \__ macros.rs
 ```
 
 #### License:
