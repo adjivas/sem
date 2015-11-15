@@ -1,7 +1,8 @@
 # Sem
 
-[![Build Status](https://travis-ci.org/adjivas/sem.svg)](https://travis-ci.org/adjivas/sem)
 [![GPLv3 License](http://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/copyleft/gpl.html)
+[![Build Status](https://travis-ci.org/adjivas/sem.svg)](https://travis-ci.org/adjivas/sem)
+[![Circle CI](https://circleci.com/gh/adjivas/sem/tree/master.svg?style=svg)](https://circleci.com/gh/adjivas/sem/tree/master)
 
 #### How to build:
 ```shell
