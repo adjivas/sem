@@ -1,7 +1,0 @@
-[package]
-name = "sem"
-version = "0.1.0"
-authors = ["adjivas <adjivas@users.noreply.github.com>"]
-description = "IPC semaphore"
-license = "gpl-3.0"
-repository = "https://github.com/adjivas/sem"
