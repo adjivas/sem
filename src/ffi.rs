@@ -24,6 +24,7 @@ pub enum Ipc {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+#[cfg(target_os = "linux")]
 pub enum Sem {
   GETPID  = 11,
   GETVAL  = 12,
@@ -31,6 +32,18 @@ pub enum Sem {
   GETZCNT = 15,
   SETVAL  = 16,
   SETALL  = 17,
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+#[cfg(target_os = "macos")]
+pub enum Sem {
+  GETPID  = 4,
+  GETVAL  = 5,
+  GETALL  = 6,
+  GETZCNT = 7,
+  SETVAL  = 8,
+  SETALL  = 9,
 }
 
 /// The `TOK_*` const are default values
