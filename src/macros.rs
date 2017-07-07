@@ -118,7 +118,7 @@ macro_rules! semop_lock {
     ($id: expr) => ({
         semop!($id, true)
     });
-    ($id: expr, $index) => ({
+    ($id: expr, $index: expr) => ({
         semop!($id, $index, true)
     });
     ($id: expr, $index: expr, $nbop: expr) => ({
@@ -133,7 +133,7 @@ macro_rules! semop_unlock {
     ($id: expr) => ({
         semop!($id, false)
     });
-    ($id: expr, $index) => ({
+    ($id: expr, $index: expr) => ({
         semop!($id, $index, false)
     });
     ($id: expr, $index: expr, $nbop: expr) => ({
